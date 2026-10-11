@@ -1,0 +1,166 @@
+{
+  "info": {
+    "name": "Excel2WhatsApp Pro",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Sample requests for Excel2WhatsApp Pro backend"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"password\": \"Str0ngPass!\",\n  \"plan\": \"Free\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/register",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "register"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Auth - Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "jane@example.com"
+            },
+            {
+              "key": "password",
+              "value": "Str0ngPass!"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/token",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "token"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Upload Campaign",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "sample.xlsx"
+            },
+            {
+              "key": "template",
+              "value": "Hello {{Name}}, {{CustomField}}",
+              "type": "text"
+            },
+            {
+              "key": "campaign_name",
+              "value": "Welcome Campaign",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/upload/campaign",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "upload",
+            "campaign"
+          ]
+        }
+      }
+    },
+    {
+      "name": "List Campaigns",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/campaigns/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "campaigns",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "Dashboard Stats",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/dashboard/stats",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "dashboard",
+            "stats"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "access_token",
+      "value": ""
+    }
+  ]
+}

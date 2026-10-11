@@ -1,0 +1,19 @@
+# Secrets
+.env
+
+# Local databases
+*.db
+*.sqlite3
+
+# Virtual environments
+.venv/
+venv/
+
+# Python / tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# OS / logs
+.DS_Store
+*.log
